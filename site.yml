@@ -4,3 +4,8 @@
     - name: Install etcd and start etcd server
       ansible.builtin.script: runetcd.sh
       become: true
+
+  tasks:
+    - name: Install seaweedfs and start master server
+      ansible.builtin.script: runfsserver.sh {{index . 0}}
+      become: true
