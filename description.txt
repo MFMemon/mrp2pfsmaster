@@ -1,0 +1,1 @@
+Test existence of etcd plugin on this peer

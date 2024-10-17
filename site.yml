@@ -1,0 +1,6 @@
+- hosts: all
+
+  tasks:
+    - name: Install etcd and start etcd server
+      ansible.builtin.script: runetcd.sh
+      become: true
