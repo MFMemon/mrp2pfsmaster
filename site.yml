@@ -1,10 +1,21 @@
 - hosts: all
 
   tasks:
+    - name: Transfer the etcd script
+      copy: src=runetcd.sh dest=/tmp/ mode=0777
+
     - name: Install etcd and start etcd server
-      ansible.builtin.script: runetcd.sh
+      ansible.builtin.shell: touch /tmp/etcdrun.logs; nohup /tmp/runetcd.sh </dev/null >/tmp/etcdrun.logs 2>&1 &
+      # ansible.builtin.script: runetcd.sh
+    #   async: 1000
+    #   poll: 0
       become: true
 
+    - name: Transfer the weedfs script
+      copy: src=runfsserver.sh dest=/tmp/ mode=0777
+
     - name: Install seaweedfs and start master server
-      ansible.builtin.script: runfsserver.sh {{index . 0}}
+      ansible.builtin.shell: touch /tmp/fsmasterrun.logs; nohup /tmp/runfsserver.sh {{index . 0}} {{index . 1}} 
+                              </dev/null >/tmp/fsmasterrun.logs 2>&1 &
+      # ansible.builtin.script: runfsserver.sh {{index . 0}}
       become: true

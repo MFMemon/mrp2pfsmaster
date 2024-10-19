@@ -13,4 +13,4 @@ tar xzvf /tmp/seaweedfs-${SEAWEEDFS_VER}-linux-amd64_full.tar.gz -C /tmp/seaweed
 rm -f /tmp/seaweedfs-${SEAWEEDFS_VER}-linux-amd64_full.tar.gz
 
 mkdir /tmp/seaweedfs/masterdir
-/tmp/seaweedfs/weed master -port=$1 -mdir=masterdir &
+/tmp/seaweedfs/weed master -port.grpc=$1 -port=$2 -mdir=masterdir
