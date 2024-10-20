@@ -4,7 +4,11 @@
     - name: Transfer the weedfs script
       copy: src=runfsserver.sh dest=/tmp/ mode=0777
 
+    - name: Create file for master server logs
+      ansible.builtin.file:
+        path: /tmp/fsmasterrun.logs
+        state: touch
+
     - name: Install seaweedfs and start master server
-      ansible.builtin.shell: touch /tmp/fsmasterrun.logs; nohup /tmp/runfsserver.sh {{index . 0}} {{index . 1}} 
-                              </dev/null >/tmp/fsmasterrun.logs 2>&1 &
+      ansible.builtin.shell: nohup /tmp/runfsserver.sh {{index . 0}} {{index . 1}} </dev/null >/tmp/fsmasterrun.logs 2>&1 &
       become: true
