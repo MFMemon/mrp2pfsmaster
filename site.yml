@@ -2,7 +2,7 @@
 
   tasks:
     - name: Transfer the weedfs script
-      copy: src=runfsserver.sh dest=/tmp/ mode=0777
+      copy: src=runfsmasterserver.sh dest=/tmp/ mode=0777
 
     - name: Create file for master server logs
       ansible.builtin.file:
@@ -10,5 +10,5 @@
         state: touch
 
     - name: Install seaweedfs and start master server
-      ansible.builtin.shell: nohup /tmp/runfsserver.sh {{index . 0}} </dev/null >/tmp/fsmasterrun.logs 2>&1 &
+      ansible.builtin.shell: nohup /tmp/runfsmasterserver.sh {{index . 0}} </dev/null >/tmp/fsmasterrun.logs 2>&1 &
       become: true
