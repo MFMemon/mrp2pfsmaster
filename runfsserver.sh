@@ -15,5 +15,5 @@ rm -f /tmp/seaweedfs-${SEAWEEDFS_VER}-linux-amd64_full.tar.gz
 listen_ip = $(ip a | awk "/inet/ && /brd/" | tail -1 | awk '{print $2}' | awk -F/ '{print $1}')
 
 mkdir /tmp/seaweedfs/masterdir
-/tmp/seaweedfs/weed master -mdir=masterdir -peers=$1 -ip=${listen_ip} -defaultReplication=020
+/tmp/seaweedfs/weed master -mdir=masterdir -peers=$1 -ip=${listen_ip} -defaultReplication=002
 # /tmp/seaweedfs/weed master -port.grpc=$1 -port=$2 -mdir=masterdir
